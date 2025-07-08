@@ -21,13 +21,17 @@ st.markdown("Masukkan data lingkungan & lokasi untuk memprediksi apakah ternak b
 
 # ---------------------------------------
 # Form Input
-st.subheader("📝 Input Fitur Penting")
+st.subheader("📝 Masukkan Informasi Lokasi & Lingkungan")
 
-x = st.number_input("Longitude (x)", value=110.0, format="%.6f")
-y = st.number_input("Latitude (y)", value=-7.0, format="%.6f")
-X5_Ct_2010_Da = st.number_input("Kepadatan Sapi per Km² (2010)", value=50.0)
-vap = st.number_input("Tekanan Uap Air (Vapor Pressure)", value=15.0)
-tmn = st.number_input("Temperatur Minimum Harian (°C)", value=20.0)
+x = st.number_input("📍 Lokasi Garis Bujur (Longitude)", value=110.0, format="%.6f", help="Contoh: 110.123456")
+y = st.number_input("🌍 Lokasi Garis Lintang (Latitude)", value=-7.0, format="%.6f", help="Contoh: -7.123456")
+
+X5_Ct_2010_Da = st.number_input("🐄 Kepadatan Populasi Sapi per km² ", value=50.0, help="Semakin padat populasi, potensi penyebaran penyakit lebih tinggi")
+
+vap = st.number_input("💧 Tekanan Uap Air (Vapor Pressure)", value=15.0, help="Semakin tinggi, menunjukkan kelembaban tinggi")
+
+tmn = st.number_input("🌡️ Suhu Minimum Harian (°C)", value=20.0, help="Suhu terendah di lokasi per hari")
+
 
 if st.button("🔍 Prediksi LSD"):
     input_data = np.array([[x, y, X5_Ct_2010_Da, vap, tmn]])
