@@ -28,8 +28,14 @@ def load_dataset():
 @st.cache_data
 def get_lokasi_options():
     df = load_dataset()
-    lokasi_map = df[["region", "x", "y"]].drop_duplicates().set_index("region").to_dict(orient="index")
+    df = df.dropna(subset=["region", "x", "y"])
+    
+    # Ambil hanya satu baris per region untuk memastikan index unik
+    df_unique = df.drop_duplicates(subset=["region"])
+
+    lokasi_map = df_unique[["region", "x", "y"]].set_index("region").to_dict(orient="index")
     return lokasi_map
+
 
 # ---------------------------------------
 # Input Lokasi
